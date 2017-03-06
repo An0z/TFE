@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class menu : MonoBehaviour {
+public class menu : MonoBehaviour
+{
+
+    public string[] Button;
 
 	// Use this for initialization
 	void Start ()
@@ -14,18 +17,18 @@ public class menu : MonoBehaviour {
     {
         if (Input.GetKeyDown("escape"))
         {
-            Application.LoadLevel("MainMenu");
+            Application.LoadLevel(Button[0]);
         }
     }
 
     public void StartGraphicDemo()
     {
-        Application.LoadLevel("Level1GraphicComp");
+        Application.LoadLevel(Button[1]);
     }
 
     public void StartTechnicalDemo()
     {
-        Application.LoadLevel("Level1ReworkedCOMPOSIT-08-07-17");
+        Application.LoadLevel(Button[2]);
     }
 
     public void Exit()

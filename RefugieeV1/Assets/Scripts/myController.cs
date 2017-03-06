@@ -14,6 +14,8 @@ public class myController : MonoBehaviour
     public myFollower mGirl;
     public myCam mCam;
 
+    public float[] screenshakeValues;
+
     public int controlTimer =0;
     public int waitTime = 50;
 
@@ -215,17 +217,17 @@ public class myController : MonoBehaviour
     {
         if (Vector3.Distance(bombPos, mChara.transform.position) > 80 && Vector3.Distance(bombPos, mChara.transform.position) < 150)
         {
-            mCam.GetComponent<Screenshake>().Shake(0.5f);
-            StartCoroutine((Flash(0.5f)));
+            mCam.GetComponent<Screenshake>().Shake(screenshakeValues[0]);
+            StartCoroutine((Flash(0.1f)));
         }
         else if (Vector3.Distance(bombPos, mChara.transform.position) > 50 && Vector3.Distance(bombPos, mChara.transform.position) < 80)
         {
-            mCam.GetComponent<Screenshake>().Shake(2);
-            StartCoroutine((Flash(0.5f)));
+            mCam.GetComponent<Screenshake>().Shake(screenshakeValues[1]);
+            StartCoroutine((Flash(0.2f)));
         }
         else if (Vector3.Distance(bombPos, mChara.transform.position) < 5)
         {
-            mCam.GetComponent<Screenshake>().Shake(3);
+            mCam.GetComponent<Screenshake>().Shake(screenshakeValues[2]);
             StartCoroutine((Flash(0.5f)));
         }
     }
