@@ -5,7 +5,7 @@ using UnityStandardAssets.ImageEffects;
 public class myCam : MonoBehaviour
 {
 
-    public GameObject character;
+    public myCharacter character;
 
     public float step = 0.5f;
     public float distCamMin = 1f;
@@ -13,6 +13,8 @@ public class myCam : MonoBehaviour
     public float distCamMax = 2f;
     public float stopCamDist = 4f;
     public float distZoom = 5f;
+
+    public float gapLeftRight= 0.5f;
 
     public bool Zoomed;
 
@@ -37,13 +39,18 @@ public class myCam : MonoBehaviour
         {
             if (character.transform.position.z >= stopCamDist)              //DEZZOOM
             {
+
                 if (distCamChara < distCamMax)
                     distCamChara += step;
                 else if (distCamChara > distCamMax)
                     distCamChara = distCamMax;
-                camPos = new Vector3(character.transform.position.x, initCam.y, character.transform.position.z - distCamChara);
-                transform.position = camPos;
-
+                if(character.moveRight ==1)
+                camPos = new Vector3(character.transform.position.x+gapLeftRight, initCam.y, character.transform.position.z - distCamChara);
+                else if (character.moveRight == 2)
+                    camPos = new Vector3(character.transform.position.x - gapLeftRight, initCam.y, character.transform.position.z - distCamChara);
+                else if (character.moveRight == 0)
+                    camPos = new Vector3(character.transform.position.x, initCam.y, character.transform.position.z - distCamChara);
+                transform.position = Vector3.MoveTowards(transform.position,camPos, character.HSpeed * Time.deltaTime);
             }
             else
             {
@@ -51,8 +58,13 @@ public class myCam : MonoBehaviour
                     distCamChara -= step;
                 if (distCamChara < distCamMin)
                     distCamChara += step;
-                camPos = new Vector3(character.transform.position.x, initCam.y, character.transform.position.z - distCamChara);
-                transform.position = camPos;
+                if (character.moveRight == 1)
+                    camPos = new Vector3(character.transform.position.x+ gapLeftRight, initCam.y, character.transform.position.z - distCamChara);
+                else if (character.moveRight == 2)
+                    camPos = new Vector3(character.transform.position.x - gapLeftRight, initCam.y, character.transform.position.z - distCamChara);
+                else if (character.moveRight == 0)
+                    camPos = new Vector3(character.transform.position.x, initCam.y, character.transform.position.z - distCamChara);
+                transform.position = Vector3.MoveTowards(transform.position, camPos, character.HSpeed * Time.deltaTime);
 
             }
         }
@@ -61,8 +73,14 @@ public class myCam : MonoBehaviour
         {
             if (distCamChara >= distZoom)
                 distCamChara -= step ;
-            camPos = new Vector3(character.transform.position.x, initCam.y, character.transform.position.z - distCamChara);
-            transform.position = camPos;
+            if (character.moveRight == 1)
+                camPos = new Vector3(character.transform.position.x+gapLeftRight, initCam.y, character.transform.position.z - distCamChara);
+            else if (character.moveRight == 2)
+                camPos = new Vector3(character.transform.position.x-gapLeftRight, initCam.y, character.transform.position.z - distCamChara);
+            else if (character.moveRight == 0)
+                camPos = new Vector3(character.transform.position.x, initCam.y, character.transform.position.z - distCamChara);
+
+            transform.position = Vector3.MoveTowards(transform.position, camPos, character.HSpeed * Time.deltaTime);
 
         }
     }

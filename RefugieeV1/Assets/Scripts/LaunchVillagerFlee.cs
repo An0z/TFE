@@ -25,6 +25,8 @@ public class LaunchVillagerFlee: MonoBehaviour
         //Debug.Log("Enter !");
         foreach (VillagerBehaviour vB in runningVillagers)
             vB.run();
+
+        GetComponent<BoxCollider>().enabled = false;
         
     }
 
@@ -33,5 +35,7 @@ public class LaunchVillagerFlee: MonoBehaviour
         //Debug.Log("Enter 2 !");
         foreach (VillagerBehaviour vB in runningVillagers)
             vB.run();
+
+        GetComponent<BoxCollider>().enabled = false;
     }
 }

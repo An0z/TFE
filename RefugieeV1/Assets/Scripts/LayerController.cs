@@ -34,13 +34,13 @@ public class LayerController : MonoBehaviour
 
         foreach (ParticleSystemRenderer p in PS)
             p.sortingOrder = (int)((p.transform.position.z - 50) * -50 / 10);
-        /*
+        
         MeshRenderer[] m = FindObjectsOfType(typeof(MeshRenderer)) as MeshRenderer[];
-        print("Nombre de MeshRenderer trouvés ! : " + m.Length);
+        Debug.Log("Nombre de MeshRenderer trouvés ! : " + m.Length);
 
         foreach (MeshRenderer mats in m)
             if(mats.material.name != "clay")
-            mats.material.renderQueue = (int)((mats.transform.position.z - 50) * -50 )*10;*/
+            mats.material.renderQueue = (int)((mats.transform.position.z - 50) * -50 )*10;
         //mats.GetComponent<Material>()
         //mats.GetComponent<Material>().renderQueue = (int)((mats.transform.position.z - 30) * -30 / 10);
 

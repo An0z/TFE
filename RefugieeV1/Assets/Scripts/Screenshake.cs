@@ -39,19 +39,19 @@ public class Screenshake : MonoBehaviour
             //camTransform.localPosition = camTransform.position + Random.insideUnitSphere * shakeAmount;
             //camTransform.localPosition = originalPos + Random.insideUnitSphere * shakeAmount;
 
-            camTransform.position = FindObjectOfType<myCam>().camPos + Random.insideUnitSphere * shakeAmount;
+            camTransform.position = FindObjectOfType<myCam>().transform.position + Random.insideUnitSphere * shakeAmount;
             //camTransform.position = GetComponent<myCam>().camPos + Random.insideUnitSphere * shakeAmount;
             shakeTimer -= Time.deltaTime * 1;
             shakeAmount =  shakeTimer/3;
             //GetComponent<myCam>().enabled = true;
-            originalPos = GetComponent<myCam>().camPos;
+            originalPos = GetComponent<myCam>().transform.position;
 
             //originalPos = camTransform.localPosition;
         }
         else
         {
             //GetComponent<myCam>().enabled = true;
-            originalPos = FindObjectOfType<myCam>().camPos;
+            originalPos = FindObjectOfType<myCam>().transform.position;
             //originalPos = GetComponent<myCam>().camPos;
             shakeTimer = 0f;
             shakeAmount = 0f;

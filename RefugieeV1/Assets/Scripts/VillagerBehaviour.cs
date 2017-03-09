@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class VillagerBehaviour : MonoBehaviour
 {
-
+    public float randomDeath = 5;
     public bool move = false;
     public float speed;
+    public Transform goPoint;
+    UnityEngine.AI.NavMeshAgent agent;
 
-	// Use this for initialization
-	void Start ()
+
+    // Use this for initialization
+    void Start ()
     {
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         GetComponent<Animator>().speed = speed;
 	}
 	
@@ -19,10 +23,15 @@ public class VillagerBehaviour : MonoBehaviour
     {
 		if(move)
         {
-            transform.position += new Vector3(speed, 0, 0);
+            //transform.position += new Vector3(speed, 0, 0);
 
-            if (Random.Range(0, 5) > 2)
+            agent.destination = goPoint.position;
+
+            if (Random.Range(0, 10) > randomDeath && move)
+            {
+                agent.Stop();
                 fall();
+            }
         }
 	}
 
