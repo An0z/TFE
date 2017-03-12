@@ -61,6 +61,7 @@ public class myCharacter : MonoBehaviour
 
     public void move(Vector3 movement)
     {
+        Vector3 oldPos = transform.position;
         GetComponent<Rigidbody>().velocity = movement;
         if (moveTop == 0)
         {
@@ -105,6 +106,8 @@ public class myCharacter : MonoBehaviour
                 carry = new Vector3(this.transform.position.x + carryValue.x, this.transform.position.y + carryValue.y, this.transform.position.z + carryValue.z);
             }
         }
+
+
     }
    
     void OnTriggerEnter(Collider col)
