@@ -10,7 +10,10 @@ public class SeeThrough : MonoBehaviour
     GameObject invisible;
 
     public Color White;
-        public Color Transparent;
+    public Color Transparent;
+
+    public Material house;
+    public Material houseAlpha;
 
     // Use this for initialization
     void Start ()
@@ -47,13 +50,16 @@ public class SeeThrough : MonoBehaviour
 
     public void setInvisible(float alpha)
     {
+        Debug.Log("Name of the object!:" + invisible.name);
         //invisible.GetComponent<Renderer>().material = new Material(invisible.GetComponent<Renderer>().material);
         //invisible.GetComponent<Renderer>().material.color = new Color(White.r, White.g, White.b, alpha);
-        if(alpha == 127.5)
-        invisible.GetComponent<Renderer>().material.color = White;
+        if (alpha == 127.5)
+            invisible.GetComponent<Renderer>().material = house;
+        //invisible.GetComponent<Renderer>().material.color = White;
 
-        if(alpha == 255)
-        invisible.GetComponent<Renderer>().material.color = Transparent;
+        if (alpha == 255)
+            invisible.GetComponent<Renderer>().material = houseAlpha;
+        //invisible.GetComponent<Renderer>().material.color = Transparent;
     }
 
 

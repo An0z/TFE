@@ -34,6 +34,9 @@ public class myCharacter : MonoBehaviour
 
     public bool isRunning = false;
 
+    [SerializeField]
+    private GameObject hidingMask;
+
 
     // Use this for initialization
     void Start()
@@ -44,6 +47,7 @@ public class myCharacter : MonoBehaviour
 
     void Update()
     {
+        growMask(isHiding);
         mAnim.speed = HSpeed / walkSpeed;
 
         if (isRunning)
@@ -184,7 +188,24 @@ public class myCharacter : MonoBehaviour
         //arrestedList = new string[0];
         //Debug.Log("ExitCollider");////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
+ 
 
+    private void growMask(bool mask)
+    {
+
+        //0.8 - 2.1 - disable
+        if (mask == false)
+        {
+            if(hidingMask.transform.localScale.x < 2.1)
+                hidingMask.transform.localScale += new Vector3(0.1f,0.1f,0.1f);
+        }
+        else if (mask)
+        {
+            if (hidingMask.transform.localScale.x > 1)
+                hidingMask.transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+        }
+
+    }
     public string interact()
     {
         //Debug.Log("interact: " + item+"..........");/////////////////////////////////////////////////////////////////////////////////////////////////
